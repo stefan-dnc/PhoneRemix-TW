@@ -1,0 +1,26 @@
+{
+  "name": "phoneremix",
+  "version": "1.0.0",
+  "description": "Magazin de telefoane reconditionate",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "telefon",
+    "ieftin",
+    "telefon",
+    "refurbished",
+    "telefoane",
+    "reconditionate",
+    "samsung",
+    "apple",
+    "iphone"
+  ],
+  "author": "Dinca Marius-Stefan",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.19.2"
+  }
+}

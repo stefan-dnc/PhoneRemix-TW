@@ -1,0 +1,238 @@
+#grid-pagina {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /*grid-auto-rows: minmax(100px, auto);*/
+    gap: 0.8em;
+    grid-template-areas:
+        "banner-mare banner-mare banner-mare banner-mare"
+        "welcome welcome welcome welcome"
+        "stoc orar orar descriere"
+        "promotii intrebari-frecvente video-yt video-yt";
+
+}
+
+#grid-pagina>* {
+    outline: 0.15em solid var(--spring-green);
+    padding: 0.5em;
+}
+
+#grid-pagina>figure {
+    margin: 0;
+    padding: 0;
+}
+
+#banner-mare {
+    grid-area: banner-mare;
+}
+
+#welcome {
+    grid-area: welcome;
+}
+
+#calendar {
+    grid-area: calendar;
+}
+
+#promotii {
+    grid-area: promotii;
+}
+
+#descriere {
+    grid-area: descriere;
+
+}
+
+#fig {
+    grid-area: fig;
+}
+
+#produse {
+    grid-area: produse;
+}
+
+#intrebari-frecvente {
+    grid-area: intrebari-frecvente;
+}
+
+#stoc {
+    grid-area: stoc;
+}
+
+#anunturi {
+    grid-area: anunturi;
+}
+
+#video-yt {
+    grid-area: video-yt;
+}
+
+#orar {
+    grid-area: orar;
+}
+
+html {
+    font-size: 15px;
+    font-family: "Madimi One", sans-serif;
+
+}
+
+#fig3 {
+    width: 50%;
+}
+
+#anunt-important {
+    font-size: 1.5em;
+}
+
+@media screen and (max-width: 1200px) {
+    html {
+        font-size: 14px;
+    }
+
+    body {
+
+        padding-left: var(--dim-spatiere-mediu);
+        padding-right: var(--dim-spatiere-mediu);
+    }
+
+
+    #grid-pagina {
+        grid-template-columns: repeat(2, 1fr);
+        /*grid-auto-rows: minmax(fit-content, auto);*/
+        gap: 0.75em;
+        grid-template-areas: "banner-mare banner-mare"
+            "welcome welcome"
+            "stoc video-yt"
+            "orar orar"
+            "promotii intrebari-frecvente"
+            "descriere descriere";
+    }
+}
+
+@media screen and (max-width: 800px) {
+    * {
+        animation: none;
+    }
+
+    html {
+        font-size: 12px;
+    }
+
+    body {
+        padding-left: var(--dim-spatiere-mic);
+        padding-right: var(--dim-spatiere-mic);
+    }
+
+    #grid-pagina {
+        /*display: block;
+        gap: 1.5em;*/
+        grid-template-columns: 1fr;
+        /*grid-auto-rows: minmax(fit-content, auto);*/
+        gap: 0.7em;
+        grid-template-areas: "banner-mare"
+            "welcome"
+            "stoc"
+            "video-yt"
+            "orar"
+            "promotii"
+            "intrebari-frecvente"
+            "descriere";
+    }
+
+    #container-orar {
+        overflow-x: scroll;
+    }
+}
+
+#link-top {
+    position: fixed;
+    bottom: 0.3em;
+    opacity: 0.5;
+    left: 0.3em;
+    width: 3rem;
+    box-sizing: border-box;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border: 0.35rem solid grey;
+    border-top-color: var(--spring-green-dark);
+    border-bottom-color: var(--spring-green-dark);
+    border-left-color: var(--spring-green-light);
+    border-right-color: var(--spring-green-light);
+    border-radius: 50%;
+    background: rgb(220, 220, 220);
+    transition: all 0.3s linear;
+    box-shadow: 0px 0px 2px 2px rgba(58, 72, 91, 0.7), inset 0px 0px 4px 4px rgba(58, 72, 91, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#link-top:hover {
+    opacity: 1;
+    transform-origin: center center;
+    transform: rotatez(90deg);
+}
+
+/*#triunghi {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 15px solid black;
+    vertical-align: top;
+    transform: translateY(30%);
+    transition: all 1s linear;
+}*/
+
+#sageata {
+    position: relative;
+    width: calc(3em - 20px);
+    height: calc(3em - 20px);
+    transition: all 0.3s linear;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: blur(1.5px);
+}
+
+#triunghi {
+    content: '';
+    position: relative;
+    width: 0;
+    height: 0;
+    /*left: 7.5px;
+    top: 5px;*/
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid black;
+    border-bottom: 10px solid black;
+    vertical-align: top;
+    /*transform: translateY(30%);
+    transition: all 1s linear;*/
+}
+
+#triunghi-coada {
+    content: '';
+    position: relative;
+    /*top: 10px;
+    left: 50%;*/
+    width: 3px;
+    height: 15px;
+    background-color: black;
+    transition: all 0.3s linear;
+}
+
+#link-top:hover>#sageata {
+    transform: rotateZ(-90deg);
+    filter: blur(0);
+}
+
+
+#tab-orar td, #tab-orar th {
+    border: 1px solid black;
+}
+
+#tab-orar thead th:nth-child(2n+1) {
+    background-color: var(--spring-green);
+}

@@ -1,0 +1,94 @@
+@media print {
+
+    #banner {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 50vw;
+        border: 4px double black;
+        background-color: white;
+        z-index: 1;
+    }
+
+    img {
+        display: none;
+    }
+
+    video {
+        display: none;
+    }
+
+    iframe {
+        display: none;
+    }
+
+    #acasa-nav {
+        display: none;
+    }
+
+    #grid-pagina {
+        display: block !important;
+        width: auto !important;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: inherit !important;
+    }
+
+    h1 {
+        z-index: 2;
+        text-align: center;
+    }
+
+    nav {
+        display: block;
+        text-align: center;
+        border: none;
+        margin-top: 20px;
+        page-break-after: always;
+    }
+
+    nav li ul {
+        display: block;
+    }
+
+    footer {
+        page-break-before: always;
+    }
+
+    #link-top {
+        display: none;
+    }
+
+    .video-yt {
+        display: none;
+    }
+
+    #watermark {
+        position: fixed;
+        display: block;
+        width: 60%;
+        height: 10%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: rgba(0, 0, 0, 0.5);
+        border: none;
+        outline: none;
+        z-index: 100;
+    }
+
+    #watermark p {
+        font-size: 2rem;
+    }
+
+    @page: right {
+        margin: 1cm 2cm;
+    }
+
+    @page: left {
+        margin: 2cm 1cm;
+    }
+}

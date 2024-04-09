@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <%- include("../fragmente/head.ejs") %>
+    <head>
+        <title>PhoneRemix</title>
+    </head>
+    <body>
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+            <h1>Descriere</h1>
+            <p>PhoneRemix este un magazin online de telefoane mobile
+                reconditionate. Aici găsești telefoane de la cele mai cunoscute
+                branduri, precum Samsung, Apple sau Huawei, la prețuri
+                accesibile. Toate telefoanele sunt testate și verificate înainte
+                de a fi puse în vânzare, astfel încât să te poți bucura de un
+                produs de calitate la un preț avantajos.</p>
+            <p>În plus, la PhoneRemix beneficiezi de garanție pentru toate
+                produsele achiziționate, astfel încât să poți cumpăra cu
+                încredere. De asemenea, poți returna produsul în termen de 14
+                zile de la achiziție, fără a fi nevoie să justifici decizia.</p>
+
+            <p>Utilizator cu ip <%= userIp %></p>
+
+            <video controls poster="/resurse/imagini/video-refurbished-thumbnail.webp" preload="metadata" id="video-refurbished">
+                <source src="/resurse/video/video-refurbished.mp4" type="video/mp4">
+                <track kind="subtitles" src="/resurse/subtitles/video-refurbished-ro.vtt" srclang="ro"
+                    label="Română" default>
+                <track kind="subtitles" src="/resurse/subtitles/video-refurbished-en.vtt" srclang="en"
+                    label="Engleză">
+            </video>
+
+        </main>
+        <%- include("../fragmente/footer.ejs") %>
+    </body>
+</html>

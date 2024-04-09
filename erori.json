@@ -1,0 +1,31 @@
+{
+  "cale_baza": "/resurse/erori/",
+  "eroare_default": {
+    "titlu": "Pagină de eroare",
+    "text": "A apărut o eroare.",
+    "imagine": "default_error.jpg"
+  },
+  "info_erori": [
+    {
+      "identificator": 400,
+      "status": true,
+      "titlu": "Bad Request",
+      "text": "Cererea nu a putut fi procesată de server.",
+      "imagine": "error_400.jpg"
+    },
+    {
+      "identificator": 403,
+      "status": true,
+      "titlu": "Acces interzis",
+      "text": "Nu aveți permisiunea să accesați această resursă.",
+      "imagine": "error_403.jpg"
+    },
+    {
+      "identificator": 404,
+      "status": true,
+      "titlu": "Pagină nu găsită",
+      "text": "Resursa căutată nu a putut fi găsită pe server.",
+      "imagine": "error_404.jpg"
+    }
+  ]
+}

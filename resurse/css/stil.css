@@ -1,0 +1,239 @@
+/* CSS RESET - BONUS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*  */
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    --spring-green: #00be65;
+    --spring-green-dark: #008546;
+    --spring-green-light: #ccf2e0;
+    --paynes-grey: #587291;
+    --text-dark: #1A1A1A;
+    --text-light: #F2F2F2;
+    --dim-spatiere: 50px;
+    --dim-spatiere-mediu: 25px;
+    --dim-spatiere-mic: 10px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    padding-left: var(--dim-spatiere);
+    padding-right: var(--dim-spatiere);
+}
+
+p {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.p-boxed {
+    color: var(--text-dark);
+    background-color: var(--spring-green);
+}
+
+h1 {
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+h2 {
+    padding: 0.5rem;
+    padding-left: 0;
+    font-size: 1.3rem;
+    width: fit-content;
+}
+
+
+a {
+    /*color: var(--spring-green-dark);*/
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#welcome {
+    font-weight: 500;
+    font-stretch: expanded;
+}
+
+/*.img-produs {
+    width: 200px;
+    height: 250px;
+    margin: 10px;
+    border: var(--dark-blue) 2px solid;
+    background-color: var(--spring-green);
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.poza-produs-telefon {
+    object-fit: cover;
+    width: 150px;
+    height: 200px;
+    border-radius: 1em;
+}*/
+
+#banner-mare {
+    margin: 0;
+    padding: 0;
+}
+
+.banner-mare-telefon {
+    width: 100%;
+}
+
+#container-orar {
+    width: 100%;
+    border: 0.1em solid black;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+#tab-orar {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tab-orar td, #tab-orar th {
+    border: 0.1em solid black;
+    padding: 0.5em;
+}
+
+#video-yt {
+    display: flex;
+    flex-direction: row;
+}
+
+#video-yt-frame {
+    width: 100%;
+}
+
+#video-yt-iframe {
+    aspect-ratio: 16/9;
+    width: 100%;
+}
+
+#taburi-iframe {
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+}
+
+.tab-iframe {
+    background-color: var(--spring-green-light);
+    height: 2em;
+    width: 6em;
+    padding: 1em;
+    margin-bottom: 1em;
+    margin-right: 0;
+    padding-right: 0;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    text-shadow: none;
+    border-left: var(--spring-green) 1em solid;
+    border-radius: 1em 0 0 1em;
+}
+
+.tab-iframe:hover {
+    transition: color 0.3s ease, background-color 0.3s ease, text-shadow 0.3s ease;
+    color: var(--text-light);
+    background-color: var(--spring-green);
+    text-shadow: var(--text-dark) 0.1em 0.1em 0.1em;
+}
+
+.math-integral {
+    font-weight: bold;
+}
+
+.math-formula {
+    font-style: italic;
+}
+
+#intrebari-frecvente details {
+    margin-bottom: 1em;
+}
+
+#intrebari-frecvente summary {
+    cursor: pointer;
+}
+
+#intrebari-frecvente li {
+    width: fit-content;
+    list-style-type: none;
+    margin-bottom: 1em;
+}
+
+
+#watermark {
+    display: none;
+}
+
+#video-refurbished {
+    width: 100%;
+}
+
+#video-refurbished::cue {
+    background-color: var(--text-dark);
+    color: var(--spring-green);
+}

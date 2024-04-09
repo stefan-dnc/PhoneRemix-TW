@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <%- include("../fragmente/head.ejs") %>
+    <head>
+        <title>PhoneRemix</title>
+    </head>
+    <body>
+
+        <div id="watermark">
+            <p>DINCĂ</p>
+            <p>MARIUS-ȘTEFAN</p>
+        </div>
+        <%- include("../fragmente/header.ejs") %>
+
+        <main>
+            <div id="grid-pagina">
+                <figure id="banner-mare">
+                    <picture>
+                        <source srcset="/resurse/imagini/imagine1.jpg"
+                            media="(max-width: 800px)"
+                            class="banner-mare-telefon" />
+                        <source srcset="/resurse/imagini/imagine2.jpg"
+                            media="(max-width: 1200px)"
+                            class="banner-mare-telefon" />
+                        <img src="/resurse/imagini/imagine3.jpg"
+                            alt="Imagine cu un telefon" title="Telefoane"
+                            class="banner-mare-telefon" />
+                    </picture>
+                    <figcaption>Telefon refurbished</figcaption>
+                </figure>
+
+                <section id="welcome">
+                    <a
+                        href="https://en.wikipedia.org/wiki/Refurbishment_(electronics)"
+                        target="_blank">Despre telefoane refurbished
+                        (Wikipedia)</a>
+                    <p class="p-boxed">Pagina noastră web este dedicată
+                        telefoanelor
+                        refurbished și recondiționate, unde aducem în fața ta o
+                        gamă
+                        variată de dispozitive mobile de înaltă calitate la
+                        prețuri
+                        accesibile. Fie că ești în căutarea unui telefon
+                        performant
+                        la un preț convenabil sau dorești să faci o alegere
+                        sustenabilă pentru mediu, suntem aici să îți satisfacem
+                        nevoile.
+                    </p>
+                </section>
+
+                <!--<section id="calendar">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Data1</td>
+                                <td>Eveniment1</td>
+                            </tr>
+                            <tr>
+                                <td>Data2</td>
+                                <td>Eveniment2</td>
+                            </tr>
+                            <tr>
+                                <td>Data3</td>
+                                <td>Eveniment3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>-->
+
+                <section id="orar">
+                    <div id="container-orar">
+                        <table id="tab-orar">
+                            <thead>
+
+                                <tr>
+                                    <th>Număr zi</th>
+                                    <th>Perioadă</th>
+                                    <th>Zi</th>
+                                    <th>Interval orar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td rowspan="5">Zile<br />Lucrătoare</td>
+                                    <td>Luni</td>
+                                    <td>10-17</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Marti</td>
+                                    <td>10-16</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+
+                                    <td>Miercuri</td>
+                                    <td>9-15</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+
+                                    <td>Joi</td>
+                                    <td>10-17</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+
+                                    <td>Vineri</td>
+                                    <td>10-18</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td rowspan="2">Weekend</td>
+                                    <td>Sambata</td>
+                                    <td>10-16</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Duminica</td>
+                                    <td>10-14</td>
+                                </tr>
+                            </tbody>
+                            <tfoot><tr><td colspan="6">Programul de sărbători va
+                                        fi
+                                        publicat în secțiunea
+                                        <strong>ANUNȚURI</strong>. Pentru
+                                        întrebări ne puteți contacta la telefon
+                                        sau e-mail.</td></tr></tfoot>
+                        </table>
+                    </div>
+                    <caption>Orar de funcționare</caption>
+                </section>
+
+                <!--<section id="anunturi">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Anunt1</td>
+                            </tr>
+                            <tr>
+                                <td>Anunt2</td>
+                            </tr>
+                            <tr>
+                                <td>Anunt3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>-->
+
+                <section id="promotii">
+                    <h2>Promoții</h2>
+                    <article>
+                        <h3 class="titlu">Super ofertă de weekend</h3>
+                        <p class="p-boxed">Telefon refurbished la preț redus cu
+                            10%.</p>
+                    </article>
+                </section>
+
+                <section id="intrebari-frecvente">
+
+                    <h2>Întrebări frecvente</h2>
+                    <details><summary>Ce telefoane aveti?</summary>
+                        <ul>
+                            <li>Apple</li>
+                            <li>Samsung</li>
+                            <li>Huawei</li>
+                        </ul>
+                    </details>
+                    <details><summary>De ce sa cumpar un telefon
+                            refurbished?</summary>
+                        <p class="p-boxed">Telefoanele refurbished sunt o
+                            alegere
+                            sustenabilă pentru mediu, fiind dispozitive
+                            recondiționate și testate înainte de a fi
+                            puse în vânzare. Acestea au aceeași
+                            performanță cu cele noi, diferențele fiind
+                            doar mici imperfecțiuni estetice.</p>
+                    </details>
+                    <details><summary>Cum pot returna un produs?</summary>
+                        <p class="p-boxed">Pentru a returna un produs, trebuie
+                            să ne
+                            contactați în termen de 14 zile de la
+                            primirea acestuia. Produsul trebuie să fie
+                            în aceeași stare în care a fost livrat și
+                            să aibă toate accesoriile originale.</p>
+                    </details>
+                    <details><summary>Care sunt metodele de
+                            plată?</summary>
+                        <p class="p-boxed">Acceptăm plata cu cardul, ramburs sau
+                            transfer bancar.</p>
+                    </details>
+                </section>
+
+                <section id="descriere">
+                    <h2>Descriere</h2>
+                    <article>
+                        <h3 class="titlu">Nu știi să calculezi
+                            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <mrow>
+                                    <mo class="math-integral">&#x222C;</mo>
+                                    <mn class="math-formula">4</mn>
+                                    <mi class="math-formula">x</mi>
+                                    <mo class="math-formula">+</mo>
+                                    <mn class="math-formula">6</mn>
+                                </mrow>
+                            </math>? Noul tău telefon știe!
+                        </h3>
+                        <p class="p-boxed">Telefoanele refurbished au aceeași
+                            performață cu cele
+                            noi, diferențele fiind doar mici imperfecțiuni
+                            estetice.</p>
+                    </article>
+                    <!--<section>
+                        <h3>Telefon refurbished la preț redus</h3>
+                        <p class="p-boxed">PhoneRemix are ca scop oferirea de telefoane
+                            refurbished la prețuri accesibile. Fie că ești în
+                            căutarea unui telefon performant la un preț
+                            convenabil sau dorești să faci o alegere sustenabilă
+                            pentru mediu, suntem aici să îți satisfacem
+                            nevoile.</p>
+                        <p class="p-boxed"> Ținta noastră este de a oferi telefoane
+                            recondiționate și testate înainte de a fi puse în
+                            vânzare. Acestea au aceeași performanță cu cele
+                            noi, diferențele fiind doar mici imperfecțiuni
+                            estetice.</p>
+                        <p class="p-boxed"> În plus, toate telefoanele refurbished vin cu
+                            garanție de 12 luni, iar în cazul în care nu ești
+                            mulțumit de produs, ai posibilitatea de a-l
+                            returna în termen de 14 zile de la primirea
+                            acestuia.</p>
+                        <p class="p-boxed"> Cumpără acum un telefon refurbished și fii
+                            sigur că faci o alegere bună pentru tine și
+                            pentru mediu!</p>
+                    </section>-->
+                </section>
+
+                <section id="stoc">
+                    <p class="p-boxed">Stoc <b>limitat</b> <s>10%</s>
+                        <ins>15%</ins>.
+                        <strong>Cumpără acum!</strong> <abbr
+                            title="Oferta expiră duminică!">Oferta expiră
+                            duminică!</abbr></p>
+                </section>
+                <section id="video-yt">
+                    <div id="taburi-iframe">
+                        <a class="tab-iframe"
+                            href="https://www.youtube.com/embed/j4hd6mCkwA4?si=DCXAj_okFCm7-Li7"
+                            target="ifr-video">Reparatie 1</a>
+                        <a class="tab-iframe"
+                            href="https://www.youtube.com/embed/giHMOKIKvLs?si=4Qns7EIyG2LfdA5U"
+                            target="ifr-video">Reparatie 2</a>
+                    </div>
+                    <div id="video-yt-frame">
+                        <iframe id="video-yt-iframe" name="ifr-video"
+                            src="https://www.youtube.com/embed/j4hd6mCkwA4?si=DCXAj_okFCm7-Li7"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </section>
+
+            </section>
+            <!--<figure id="iphone-14" class="img-produs">
+                <img src="resurse/imagini/iphone_14.jpg" alt="iPhone 14"
+                    class="poza-produs-telefon">
+                <figcaption>iPhone 14</figcaption>
+            </figure>
+            <figure id="samsung-s24" class="img-produs">
+                <img src="resurse/imagini/samsung_s24.jpg"
+                    alt="Samsung S24" class="poza-produs-telefon">
+                <figcaption>Samsung S24</figcaption>
+            </figure>
+            <figure id="iphone-14pro" class="img-produs">
+                <img src="resurse/imagini/iphone_14pro.jpg" alt="iPhone 14"
+                    class="poza-produs-telefon">
+                <figcaption>iPhone 14 Pro</figcaption>
+            </figure>-->
+
+        </main>
+
+        <%- include("../fragmente/footer.ejs") %>
+    </body>
+</html>
