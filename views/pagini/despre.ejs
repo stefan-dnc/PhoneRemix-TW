@@ -21,6 +21,19 @@
 
             <p>Utilizator cu ip <%= userIp %></p>
 
+            <hr>
+
+            <div id="img-despre"></div>
+
+            <hr>
+
+            <div id="despre-telefoane-refurbished">
+                Despre telefoane refurbished:
+                <div id="despre-telefoane-refurbished-reflectat">
+                    Despre telefoane refurbished:
+                </div>
+            </div>
+
             <video controls poster="/resurse/imagini/video-refurbished-thumbnail.webp" preload="metadata" id="video-refurbished">
                 <source src="/resurse/video/video-refurbished.mp4" type="video/mp4">
                 <source src="/resurse/video/video-refurbished.webm" type="video/webm">
@@ -29,6 +42,10 @@
                 <track kind="subtitles" src="/resurse/subtitles/video-refurbished-en.vtt" srclang="en"
                     label="Engleză">
             </video>
+
+            <hr>
+
+            <%- include("../fragmente/galerie.ejs", { galerie: galerie, galerie_path: galerie_path}) %>
 
         </main>
         <%- include("../fragmente/footer.ejs") %>

@@ -1,0 +1,25 @@
+<section id="galerie">
+    <% galerie.forEach((imagine, index) => { %>
+    <figure id="galerie-imagine<%=index+1%>">
+        <picture alt="<%= imagine.alt || imagine.titlu %>"
+                title="<%= imagine.text_descriere %>">
+            <source media="(max-width: 800px)"
+                srcset="<%= galerie_path + "/small/" + imagine.cale_fisier %>">
+            <source media="(max-width: 1200px)"
+                srcset="<%= galerie_path + "/medium/" + imagine.cale_fisier %>">
+            <source media="(min-width: 1201px)"
+                srcset="<%= galerie_path + "/big/" + imagine.cale_fisier %>">
+            <img src="<%= galerie_path + "/" + imagine.cale_fisier %>"
+                >
+        </picture>
+        <figcaption><%= imagine.titlu %></figcaption>
+    </figure>
+
+    <%if ((index + 1) % 5 == 4) { %>
+      <div class="empty-grid-space"></div>
+    <% } %>
+
+    <% }); %>
+
+    <div id="galerie-spatiu"></div>
+</section>
