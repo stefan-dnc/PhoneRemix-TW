@@ -1,16 +1,16 @@
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
-$primary-color: #ff6347;
-$secondary-color: #4682b4;
+$primary: #00be65;
+$secondary: #008546;
 
-$custom-bg-color-1: #f0f8ff;
-$custom-bg-color-2: #f5f5f5;
+$custom-bg-color-1: #F2F2F2;
+$custom-bg-color-2: #ccf2e0;
 
-$body-color: #333;
-$heading-color: #000;
+$body-color: #F2F2F2;
+$heading-color: #00be65;
 
-$screen-md: 768px;
-$screen-lg: 992px;
+$screen-md: 800px;
+$screen-lg: 1200px;
 
 $border-radius: 8px;
 
@@ -22,8 +22,6 @@ $h5-font-size: 1.25rem;
 $h6-font-size: 1rem;
 
 $font-family-base: "Poppins", sans-serif;
-
-$custom-variable: value;
 
 hr{
     border-top: 0;

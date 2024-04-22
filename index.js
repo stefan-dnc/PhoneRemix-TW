@@ -14,6 +14,21 @@ console.log("Director de lucru", process.cwd());
 // este calea absoluta a folderului in care se afla fisierul js rulat de node,
 // iar process.cwd() este calea absoluta a folderului din care am folosit comanda node
 
+const Client = require("pg").Client;
+
+var client = new Client({
+  database: "cti_2024",
+  user: "postgres",
+  password: "qAaKgmhk",
+  host: "localhost",
+  port: 5432,
+});
+client.connect();
+
+client.query("select * from unnest(enum_range(NULL::categorie))", function (err, rez) {
+  console.log(rez);
+});
+
 const vect_foldere = ["temp", "backup"];
 vect_foldere.forEach((folder) => {
   const folderPath = path.join(__dirname, folder);
@@ -32,6 +47,44 @@ const obGlobal = {
   folderCss: path.join(__dirname, "resurse/css"),
   folderBackup: path.join(__dirname, "backup"),
 };
+
+app.get("/produse", function (req, res) {
+  console.log(req.query);
+  var conditieQuery = "";
+  if (req.query.tip) {
+    conditieQuery = ` where tip_produs='${req.query.tip}'`;
+  }
+  client.query(
+    "select * from unnest(enum_range(null::categ_prajitura))",
+    function (err, rezOptiuni) {
+      client.query(
+        `select * from prajituri ${conditieQuery}`,
+        function (err, rez) {
+          if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+          } else {
+            res.render("pagini/produse", { produse: rez.rows, optiuni: rezOptiuni.rows });
+          }
+        }
+      );
+    }
+  );
+});
+
+app.get("/produs/:id", function (req, res) {
+  client.query(
+    `select * from prajituri where id=${req.params.id}`,
+    function (err, rez) {
+      if (err) {
+        console.log(err);
+        afisareEroare(res, 2);
+      } else {
+        res.render("pagini/produs", { prod: rez.rows[0] });
+      }
+    }
+  );
+});
 
 function initErori() {
   fs.readFile("erori.json", "utf8", (err, data) => {
