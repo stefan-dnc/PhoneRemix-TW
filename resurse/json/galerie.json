@@ -56,6 +56,12 @@
       "anotimp": "primavara"
     },
     {
+      "cale_fisier": "imagine-14.jpg",
+      "titlu": "Imagine 14 - CC-BY",
+      "text_descriere": "\"Close-up of the front of a Samsung phone\" by Ivan Radic is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/?ref=openverse.",
+      "anotimp": "primavara"
+    },
+    {
       "cale_fisier": "imagine-10.jpg",
       "titlu": "Imagine 10",
       "text_descriere": "Aceasta este a 10-a imagine din galerie",
@@ -65,25 +71,19 @@
       "cale_fisier": "imagine-11.jpg",
       "titlu": "Imagine 11",
       "text_descriere": "Aceasta este a 11-a imagine din galerie",
-      "anotimp": "primavara"
+      "anotimp": "vara"
     },
     {
       "cale_fisier": "imagine-12.jpg",
       "titlu": "Imagine 12",
       "text_descriere": "Aceasta este a 12-a imagine din galerie",
-      "anotimp": "primavara"
+      "anotimp": "toamna"
     },
     {
       "cale_fisier": "imagine-13.jpg",
       "titlu": "Imagine 13",
       "text_descriere": "Aceasta este a 13-a imagine din galerie",
-      "anotimp": "primavara"
-    },
-    {
-      "cale_fisier": "imagine-14.jpg",
-      "titlu": "Imagine 14 - CC-BY",
-      "text_descriere": "\"Close-up of the front of a Samsung phone\" by Ivan Radic is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/?ref=openverse.",
-      "anotimp": "primavara"
+      "anotimp": "iarna"
     }
   ]
 }

@@ -1,5 +1,5 @@
 <section id="galerie">
-    <% galerie.forEach((imagine, index) => { %>
+    <% galerie.slice(0, 10).forEach((imagine, index) => { %>
     <figure id="galerie-imagine<%=index+1%>">
         <picture alt="<%= imagine.alt || imagine.titlu %>"
                 title="<%= imagine.text_descriere %>">
