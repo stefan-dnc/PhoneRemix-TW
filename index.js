@@ -52,13 +52,13 @@ app.get("/produse", function (req, res) {
   console.log(req.query);
   var conditieQuery = "";
   if (req.query.tip) {
-    conditieQuery = ` where tip_produs='${req.query.tip}'`;
+    conditieQuery = ` where brand='${req.query.tip}'`;
   }
   client.query(
-    "select * from unnest(enum_range(null::categ_prajitura))",
+    "select * from unnest(enum_range(null::categorie_brand))",
     function (err, rezOptiuni) {
       client.query(
-        `select * from prajituri ${conditieQuery}`,
+        `select * from produse ${conditieQuery}`,
         function (err, rez) {
           if (err) {
             console.log(err);
@@ -74,7 +74,7 @@ app.get("/produse", function (req, res) {
 
 app.get("/produs/:id", function (req, res) {
   client.query(
-    `select * from prajituri where id=${req.params.id}`,
+    `select * from produse where id=${req.params.id}`,
     function (err, rez) {
       if (err) {
         console.log(err);

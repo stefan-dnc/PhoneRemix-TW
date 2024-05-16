@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html  lang="ro">
+<html lang="ro"><%- include("../fragmente/head.ejs") %>
     <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
+        <title>PhoneRemix</title>
         <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
-        <title>Cofetăria Dulcelind - home</title>
-        <%- include("../fragmente/head") %>     
         <script type="text/javascript" src=/resurse/js/produse.js></script>
 
     </head>
@@ -14,24 +11,23 @@
 
     <main>
         <label> Nume: <input type="text" id="inp-nume"></label>
-        <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
-        <div> Calorii:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
-            <p><label>Dietetic (calorii &lt; 350)
-                <input id="i_rad1"  name="gr_rad" value="0:350" type="radio"/>
+        <div> Stocare:
+            <p><label> &le;127GB
+                <input id="i_rad1"  name="gr_rad" value="0:127" type="radio"/>
             </label></p>
-            <p><label>Mediu (350 &le; calorii &lt; 700)
-                <input id="i_rad2"  name="gr_rad" value="350:750" type="radio"/>
+            <p><label> 128GB-256GB
+                <input id="i_rad2"  name="gr_rad" value="128:256" type="radio"/>
             </label>
-            <p><label>Ridicat caloric (700 &le; calorii)
-                <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
+            <p><label> 257GB-512GB
+                <input id="i_rad3" name="gr_rad" value="257:512" type="radio"/>
             </label>
-            <p><label>Toate
+            <p><label>  Toate
                 <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
             </label>
         </div>
 
 
-        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
+        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="2000"> <span id="infoRange">(0)</span></label>
         <label>Select simplu:
             <select id="inp-categorie">
                 <option id="sel-toate" selected value="toate">toate</option>
@@ -48,27 +44,26 @@
         <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
         
         </p>
-        
-        <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
         <section id="produse">
             <h2>Produse</h2>
             <div class="grid-produse">
                 <% for( let prod of locals.produse) { %>
                     <article class="produs" >
-                        <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+                        <h3 class="nume"><a href="/produs/<%-prod.id %>"><span class="val-model"><%-prod.model%></span></a></h3>
+                        <p class="categorie">Brand:<span class="val-categorie"><%- prod.brand%></span></p>
                         <div class="info-prod">
                             <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                            <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
-                            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
+                            <p class="uzura">Uzură: <span class="val-uzura"><%- prod.uzura%></span></p>
+                            <p class="memorie">Spațiu de stocare: <span class="val-memorie"><%- prod.memorie_gb%></span> GB</p>
+                            <p class="memorie-ram">RAM: <span class="val-memorie-ram"><%- prod.memorie_ram%></span> GB</p>
                         </div>
-                        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
                         <figure>
-                            <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                            <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" alt="[imagine <%- prod.nume %>]" /></a>
                         </figure>
-                        <label class="selecteaza-cos">
+                        <!--<label class="selecteaza-cos">
                             Selectează:<br/>
                             <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                        </label>
+                        </label>-->
                     </article>
                 <% }%>
             </div>

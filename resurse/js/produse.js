@@ -1,83 +1,101 @@
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
+  document.getElementById("inp-pret").onchange = function () {
+    document.getElementById("infoRange").innerHTML = `(${this.value})`;
+  };
 
-    this.document.getElementById("inp-pret").onchange = function() {
-        document.getElementById("infoRange").innerHTML = `(${this.value})`;
+  document.getElementById("filtrare").onclick = function () {
+    let val_nume = document.getElementById("inp-nume").value.toLowerCase();
+
+    let radiobuttons = document.getElementsByName("gr_rad");
+    let val_stocare;
+    for (let r of radiobuttons) {
+      if (r.checked) {
+        val_stocare = r.value;
+        break;
+      }
     }
 
-    //console.log(document.getElementById("produse").innerHTML);
-    this.document.getElementById("filtrare").addEventListener("click", function() {});
-    this.document.getElementById("filtrare").onclick = function() {
-        var inpNume = document.getElementById("inp-nume").value.toLowerCase().trim()
+    var stocare_a, stocare_b;
+    if (val_stocare != "toate") {
+      [stocare_a, stocare_b] = val_stocare.split(":");
+      stocare_a = parseInt(stocare_a);
+      stocare_b = parseInt(stocare_b);
+    }
 
-        var radioCalorii = document.getElementsByName("gr_rad")[0].value
-        let inpCalorii;
-        for(let rad of radioCalorii){
-            if(rad.checked){
-                inpCalorii = rad.value;
-                break;
-            }
-        }
+    let val_pret = document.getElementById("inp-pret").value;
 
-        let minCalorii, maxCalorii;
-        if(inpCalorii != "toate"){
-            vCal = inpCalorii.split(":")
-            minCalorii = parseInt(vCal[0]);
-            maxCalorii = parseInt(vCal[1]);
-        }
+    let val_categ = document.getElementById("inp-categorie").value;
 
-        var inpPret = parseInt(document.getElementById("inp-pret").value)
+    var produse = document.getElementsByClassName("produs");
 
-        var inpCateg = document.getElementById("inp-categorie").value.toLowerCase().trim()
+    for (let prod of produse) {
+      prod.style.display = "none";
+      let nume = prod
+        .getElementsByClassName("val-nume")[0]
+        .innerHTML.toLowerCase();
 
-        var produse = document.getElementsByClassName("produs")
+      let cond1 = nume.startsWith(val_nume);
 
-        for(let produs of produse)
-        {
-            let valNume = produs.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase().trim()
+      let stocare = parseInt(
+        prod.getElementsByClassName("val-stocare")[0].innerHTML
+      );
 
-            let cond1 = valNume.includes(inpNume);
-            //let con1 = valNume.startsWith(inpNume);
+      let cond2 =
+        val_stocare == "toate" || (stocare_a <= stocare && stocare < stocare_b);
 
-            let valCalorii = parseInt(produs.getElementsByClassName("val-calorii")[0].innerHTML)
+      let pret = parseFloat(
+        prod.getElementsByClassName("val-pret")[0].innerHTML
+      );
 
-            let cond2 = (inpCalorii=="toate") || (valCalorii >= minCalorii && valCalorii <= maxCalorii);
+      let cond3 = pret >= val_pret;
 
-            let valPret = parseInt(
-              produs.getElementsByClassName("inp-pret")[0].innerHTML
-            );
+      let categorie = prod.getElementsByClassName("val-categorie")[0].innerHTML;
+      let cond4 = val_categ == "toate" || val_categ == categorie;
 
-            let cond3 = valPret > inpPret;
-
-            let valCategorie = produs.getElementsByClassName("val-categorie")[0].innerHTML.toLowerCase().trim()
-
-            let cond4 = valCategorie.includes(inpCateg) || inpCateg == "toate";
-
-            if(cond1 && cond2 && cond3 && cond4)
-            {
-                produs.style.display = "block";
-            }
-            else
-            {
-                produs.style.display = "none";
-            }
-
-        }
-    };
-
-    document.getElementById("resetare").onclick = function () {
-      document.getElementById("inp-nume").value = "";
-
-      document.getElementById("inp-pret").value =
-        document.getElementById("inp-pret").min;
-      document.getElementById("inp-categorie").value = "toate";
-      document.getElementById("i_rad4").checked = true;
-      var produse = document.getElementsByClassName("produs");
-      document.getElementById("infoRange").innerHTML = "(0)";
-      for (let prod of produse) {
+      if (cond1 && cond2 && cond3 && cond4) {
         prod.style.display = "block";
       }
-    };
-});
+    }
+  };
 
-//window.addEventListener("keypress", function() {});
-//window.addEventListener("input", function() {});
+  document.getElementById("resetare").onclick = function () {
+    document.getElementById("inp-nume").value = "";
+
+    document.getElementById("inp-pret").value =
+      document.getElementById("inp-pret").min;
+    document.getElementById("inp-categorie").value = "toate";
+    document.getElementById("i_rad4").checked = true;
+    var produse = document.getElementsByClassName("produs");
+    document.getElementById("infoRange").innerHTML = "(0)";
+    for (let prod of produse) {
+      prod.style.display = "block";
+    }
+  };
+  function sortare(semn) {
+    var produse = document.getElementsByClassName("produs");
+    var v_produse = Array.from(produse);
+    v_produse.sort(function (a, b) {
+      let pret_a = parseFloat(
+        a.getElementsByClassName("val-pret")[0].innerHTML
+      );
+      let pret_b = parseFloat(
+        b.getElementsByClassName("val-pret")[0].innerHTML
+      );
+      if (pret_a == pret_b) {
+        let nume_a = a.getElementsByClassName("val-nume")[0].innerHTML;
+        let nume_b = b.getElementsByClassName("val-nume")[0].innerHTML;
+        return semn * nume_a.localeCompare(nume_b);
+      }
+      return semn * (pret_a - pret_b);
+    });
+    for (let prod of v_produse) {
+      prod.parentElement.appendChild(prod);
+    }
+  }
+  document.getElementById("sortCrescNume").onclick = function () {
+    sortare(1);
+  };
+  document.getElementById("sortDescrescNume").onclick = function () {
+    sortare(-1);
+  };
+});

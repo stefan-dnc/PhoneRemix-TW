@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html  lang="ro">
+    <%- include("../fragmente/head.ejs") %>
     <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
-        
-        <title>Cofetăria Dulcelind - home</title>
-        <%- include("../fragmente/head") %>     
+        <title>PhoneRemix</title>
         <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
     </head>
-    <body>
     <%- include("../fragmente/header") %>
+    <body>
 
     <main>
         <section>
             <h2>Pagină produs</h2>
                 <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Ingrediente: <span class="ingrediente"><%- locals.prod.ingrediente %> </span></p>
-                    <p>Calorii: <span class="calorii"><%- locals.prod.calorii %> </span></p>
-                    <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
-                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Pentru diabetici: <span class="pt_diabetici"><%- locals.prod.pt_diabetici %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
+                    <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
+                            <p class="uzura">Uzură: <span class="val-uzura"><%- prod.uzura%></span></p>
+                            <p class="memorie">Spațiu de stocare: <span class="val-memorie"><%- prod.memorie_gb%></span> GB</p>
+                            <p class="memorie-ram">RAM: <span class="val-memorie-ram"><%- prod.memorie_ram%></span> GB</p>
                     <figure class="imag-produs">
                         <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
                     </figure>    

@@ -1,68 +1,83 @@
-main{
-    --padd-main:1rem;
-    padding-left:var(--padd-main);
-    padding-right:var(--padd-main);
+main {
+    --padd-main: 1rem;
+    padding-left: var(--padd-main);
+    padding-right: var(--padd-main);
 }
 
-.grid-produse{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap:1rem;
+.grid-produse {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
 }
-.grid-produse .produs{
+
+.grid-produse .produs {
     border-radius: 2rem;
     box-shadow: 0px 0px 0.8rem 0.3rem grey;
     overflow: hidden;
 }
 
-.grid-produse .produs h3{
-    background-color: var(--culoare-roz-inchis);
+.grid-produse .produs h3 {
+    background-color: var(--spring-green);
     text-align: center;
     margin-top: 0;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
 
-.grid-produse .produs h3 a{
-    color:black;
+.grid-produse .produs h3 a {
+    color: black;
 }
-.grid-produse .produs h3 a:hover{
-    color:white;
+
+.grid-produse .produs h3 a:hover {
+    color: white;
 }
-.grid-produse .produs figure{
+
+.grid-produse .produs figure {
     text-align: center;
 }
-.grid-produse .produs figure img{
-    border:1px solid grey
-}
-.grid-produse .produs .info-prod{
-    display:flex;
-    background-color: var(--cl-marcare);
-}
-.grid-produse .produs .info-prod p{
-    width:30%;
-    text-align:center;
-    font-weight:bold;
+
+.grid-produse .produs figure a {
+    width: 100%;
+    max-height: 400px;
 }
 
-.grid-produse .produs p.categorie{
-
-    text-align:center;
-    font-weight:bold;
+.grid-produse .produs figure img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border: 1px solid grey
 }
 
-.info-produse{
-    background-color: var(--cl-marcare);
-    padding:0.2rem;
+.grid-produse .produs .info-prod {
+    display: flex;
+    background-color: var(--spring-green-light);
+}
+
+.grid-produse .produs .info-prod p {
+    width: 30%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.grid-produse .produs p.categorie {
+
+    text-align: center;
+    font-weight: bold;
+}
+
+.info-prod {
+    background-color: var(--spring-green-light);
+    padding: 0.2rem;
     box-shadow: 0px 0px 0.5rem 0.15rem grey;
 }
 
-.produs{
+.produs {
     position: relative;
 }
-.selecteaza-cos{
+
+/*.selecteaza-cos{
     display: inline-block;
-    background-color: var(--culoare-mov);
+    background-color: var(--spring-green);
     position:absolute;
     bottom:0.5rem;
     right:0.5rem;
@@ -73,7 +88,7 @@ main{
 }
 
 .selecteaza-cos:hover{
-    background-color: var(--cl-marcare);
+    background-color: var(--text-light);
     
-    border:1px solid  var(--culoare-mov);
-}
+    border:1px solid  var(--spring-green);
+}/*

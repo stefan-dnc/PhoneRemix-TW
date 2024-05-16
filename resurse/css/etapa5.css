@@ -47,7 +47,6 @@ hr {
     left: 0;
     top: 100%;
     transform-origin: 0 0;
-    /*conetaza ordinea transformarilor!*/
     transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(10px, -25px);
     opacity: 0.55;
     filter: blur(2px);
@@ -103,7 +102,6 @@ hr {
 
 }
 
-/* Increment the counter for each figure */
 #galerie figure {
     display: block;
     margin: 0;
@@ -119,14 +117,10 @@ hr {
 
 #galerie figure:hover>picture>img {
     transform: scale(1.4);
-    /* Scale by 40% */
     border-radius: 15px;
     opacity: 0.5;
-    /* Semi-transparent */
-    /* Rounded corners */
 }
 
-/* Display the index as lowercase Roman numerals */
 #galerie figcaption::before {
     content: counter(galerie-counter, lower-roman) ". ";
 }

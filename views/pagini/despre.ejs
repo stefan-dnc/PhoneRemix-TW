@@ -34,18 +34,27 @@
                 </div>
             </div>
 
-            <video controls poster="/resurse/imagini/video-refurbished-thumbnail.webp" preload="metadata" id="video-refurbished">
-                <source src="/resurse/video/video-refurbished.mp4" type="video/mp4">
-                <source src="/resurse/video/video-refurbished.webm" type="video/webm">
-                <track kind="subtitles" src="/resurse/subtitles/video-refurbished-ro.vtt" srclang="ro"
+            <video controls
+                poster="/resurse/imagini/video-refurbished-thumbnail.webp"
+                preload="metadata" id="video-refurbished">
+                <source src="/resurse/video/video-refurbished.mp4"
+                    type="video/mp4">
+                <source src="/resurse/video/video-refurbished.webm"
+                    type="video/webm">
+                <track kind="subtitles"
+                    src="/resurse/subtitles/video-refurbished-ro.vtt"
+                    srclang="ro"
                     label="Română" default>
-                <track kind="subtitles" src="/resurse/subtitles/video-refurbished-en.vtt" srclang="en"
+                <track kind="subtitles"
+                    src="/resurse/subtitles/video-refurbished-en.vtt"
+                    srclang="en"
                     label="Engleză">
             </video>
 
             <hr>
 
-            <%- include("../fragmente/galerie.ejs", { galerie: galerie, galerie_path: galerie_path}) %>
+            <%- include("../fragmente/galerie.ejs", { galerie: galerie,
+            galerie_path: galerie_path}) %>
 
         </main>
         <%- include("../fragmente/footer.ejs") %>
