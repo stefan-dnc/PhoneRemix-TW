@@ -28,11 +28,11 @@ window.addEventListener("load", function () {
 
     var produse = document.getElementsByClassName("produs");
 
+    let val_accesorii = document.getElementById("inp-accesorii").checked;
+
     for (let prod of produse) {
       prod.style.display = "none";
-      let nume = prod
-        .getElementsByClassName("val-nume")[0]
-        .innerHTML.toLowerCase();
+      let nume = prod.getElementsByClassName("val-model")[0].innerHTML.toLowerCase();
 
       let cond1 = nume.startsWith(val_nume);
 
@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
       );
 
       let cond2 =
-        val_stocare == "toate" || (stocare_a <= stocare && stocare < stocare_b);
+        val_stocare == "toate" || (stocare_a <= stocare && stocare <= stocare_b);
 
       let pret = parseFloat(
         prod.getElementsByClassName("val-pret")[0].innerHTML
@@ -52,7 +52,10 @@ window.addEventListener("load", function () {
       let categorie = prod.getElementsByClassName("val-categorie")[0].innerHTML;
       let cond4 = val_categ == "toate" || val_categ == categorie;
 
-      if (cond1 && cond2 && cond3 && cond4) {
+      let accesorii = prod.getElementsByClassName("val-accesorii")[0].innerHTML == "DA";
+      let cond5 = val_accesorii == accesorii || !val_accesorii;
+
+      if (cond1 && cond2 && cond3 && cond4 && cond5) {
         prod.style.display = "block";
       }
     }
@@ -65,28 +68,37 @@ window.addEventListener("load", function () {
       document.getElementById("inp-pret").min;
     document.getElementById("inp-categorie").value = "toate";
     document.getElementById("i_rad4").checked = true;
+    document.getElementById("inp-accesorii").checked = false;
     var produse = document.getElementsByClassName("produs");
     document.getElementById("infoRange").innerHTML = "(0)";
     for (let prod of produse) {
       prod.style.display = "block";
     }
+
+    var produse = document.getElementsByClassName("produs");
+    var v_produse = Array.from(produse);
+    v_produse.sort(function (a, b) {
+      let id_a = parseInt(a.id.split("_")[2]);
+      let id_b = parseInt(b.id.split("_")[2]);
+      return id_a - id_b;
+    });
+    for (let prod of v_produse) {
+      prod.parentElement.appendChild(prod);
+    }
+
   };
   function sortare(semn) {
     var produse = document.getElementsByClassName("produs");
     var v_produse = Array.from(produse);
     v_produse.sort(function (a, b) {
-      let pret_a = parseFloat(
-        a.getElementsByClassName("val-pret")[0].innerHTML
-      );
-      let pret_b = parseFloat(
-        b.getElementsByClassName("val-pret")[0].innerHTML
-      );
-      if (pret_a == pret_b) {
-        let nume_a = a.getElementsByClassName("val-nume")[0].innerHTML;
-        let nume_b = b.getElementsByClassName("val-nume")[0].innerHTML;
-        return semn * nume_a.localeCompare(nume_b);
+      let brand_a = a.getElementsByClassName("val-categorie")[0].innerHTML;
+      let brand_b = b.getElementsByClassName("val-categorie")[0].innerHTML;
+      if (brand_a == brand_b) {
+        let pret_a = parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML);
+        let pret_b = parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML);
+        return semn * (pret_a - pret_b);
       }
-      return semn * (pret_a - pret_b);
+      return semn * brand_a.localeCompare(brand_b);
     });
     for (let prod of v_produse) {
       prod.parentElement.appendChild(prod);
@@ -98,4 +110,30 @@ window.addEventListener("load", function () {
   document.getElementById("sortDescrescNume").onclick = function () {
     sortare(-1);
   };
+
+  document.getElementById("pretTotal").onclick = function () {
+    if(document.getElementById("info-suma")) return;
+    var produse=document.getElementsByClassName("produs");
+    let suma=0;
+    for (let prod of produse){
+        if(prod.style.display!="none" && prod.getElementsByClassName("select-cos")[0].checked)
+        {
+            let pret=parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML);
+            suma+=pret;
+        }
+    }
+    
+    let p=document.createElement("p-suma");
+    p.innerHTML=suma;
+    p.id="info-suma";
+    ps=document.getElementById("p-suma");
+    container = ps.parentNode;
+    frate=ps.nextElementSibling
+    container.insertBefore(p, frate);
+    setTimeout(function(){
+        let info=document.getElementById("info-suma");
+        if(info)
+            info.remove();
+    }, 1000)
+  }
 });

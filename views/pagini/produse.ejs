@@ -10,60 +10,107 @@
     <%- include("../fragmente/header") %>
 
     <main>
-        <label> Nume: <input type="text" id="inp-nume"></label>
-        <div> Stocare:
-            <p><label> &le;127GB
-                <input id="i_rad1"  name="gr_rad" value="0:127" type="radio"/>
+        <label>Nume: <input type="text" id="inp-nume" class="form-control"></label>
+        <div>Stocare:
+            <p class="form-check-label"><label> &le;127GB
+                <input id="i_rad1"  name="gr_rad" value="0:127" type="radio" class="form-check-input"/>
             </label></p>
-            <p><label> 128GB-256GB
-                <input id="i_rad2"  name="gr_rad" value="128:256" type="radio"/>
+            <p class="form-check-label"><label> 128GB-256GB
+                <input id="i_rad2"  name="gr_rad" value="128:256" type="radio" class="form-check-input"/>
             </label>
-            <p><label> 257GB-512GB
-                <input id="i_rad3" name="gr_rad" value="257:512" type="radio"/>
+            <p class="form-check-label"><label> 257GB-512GB
+                <input id="i_rad3" name="gr_rad" value="257:512" type="radio" class="form-check-input"/>
             </label>
-            <p><label>  Toate
-                <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+            <p class="form-check-label"><label>  Toate
+                <input id="i_rad4" checked name="gr_rad" value="toate" type="radio" class="form-check-input"/>
             </label>
         </div>
 
 
-        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="2000"> <span id="infoRange">(0)</span></label>
-        <label>Select simplu:
-            <select id="inp-categorie">
+        <label>Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="2000" class="form-range"> <span id="infoRange">(0)</span></label>
+        <br>
+        <label>Brand:
+            <select id="inp-categorie" class="form-select">
                 <option id="sel-toate" selected value="toate">toate</option>
                 <% for (let opt of locals.optiuni) { %>
-                    <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                    <option value="<%- opt.unnest %>" class="form-select"><%- opt.unnest %> </option>
                 <% } %>
             </select>
         </label>
+        <label class="form-check-label">Are accesorii: <input type="checkbox" id="inp-accesorii" class="toggle-button"></label>
         <p>
-        <button id="filtrare">Filtreaza</button> 
-
-        <button id="resetare">Reseteaza</button><br/>
-        <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-        <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
+        <button id="filtrare" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+  <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
+</svg><span class="buttonText">Filtrează</span></button> 
+        <button id="resetare" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+</svg><span class="buttonText">Resetează</span></button><br/>
+        <button id="sortCrescNume" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-down-alt" viewBox="0 0 16 16">
+  <path d="M12.96 7H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645z"/>
+  <path fill-rule="evenodd" d="M10.082 12.629 9.664 14H8.598l1.789-5.332h1.234L13.402 14h-1.12l-.419-1.371zm1.57-.785L11 9.688h-.047l-.652 2.156z"/>
+  <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z"/>
+</svg><span class="buttonText">Sortează crescător după categorie și preț</span></button>
+        <button id="sortDescrescNume" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371zm1.57-.785L11 2.687h-.047l-.652 2.157z"/>
+  <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645zm-8.46-.5a.5.5 0 0 1-1 0V3.707L2.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L4.5 3.707z"/>
+</svg><span class="buttonText">Sortează descrescător după categorie și preț</span></button>
+        <button id="pretTotal" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+</svg><span class="buttonText">Preț total</span></button>
+        <span id="p-suma"></span>
         
         </p>
         <section id="produse">
             <h2>Produse</h2>
             <div class="grid-produse">
                 <% for( let prod of locals.produse) { %>
-                    <article class="produs" >
+                    <article class="produs" id="ar_ent_<%- prod.id %>">
                         <h3 class="nume"><a href="/produs/<%-prod.id %>"><span class="val-model"><%-prod.model%></span></a></h3>
-                        <p class="categorie">Brand:<span class="val-categorie"><%- prod.brand%></span></p>
-                        <div class="info-prod">
-                            <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                            <p class="uzura">Uzură: <span class="val-uzura"><%- prod.uzura%></span></p>
-                            <p class="memorie">Spațiu de stocare: <span class="val-memorie"><%- prod.memorie_gb%></span> GB</p>
-                            <p class="memorie-ram">RAM: <span class="val-memorie-ram"><%- prod.memorie_ram%></span> GB</p>
+                        <div class="columns">
+                            <div class="info-prod">
+                                <p class="categorie"><span class="titlu-produs">Brand: </span><span class="val-categorie"><%-prod.brand%></span></p>
+                                <figure>
+                                    <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" alt="[imagine <%- prod.nume %>]" /></a>
+                                </figure>
+                                <p class="descriere"><span class="titlu-produs">Descriere: </span><%-prod.descriere%></p>
+                            </div>
+                            <div>
+                                <p class="pret"><span class="titlu-produs">Preț: </span><span class="val-pret"><%-prod.pret%></span></p>
+                                <p class="uzura"><span class="titlu-produs">Uzură: </span><span class="val-uzura"><%-prod.uzura%></span></p>
+                                <p class="memorie"><span class="titlu-produs">Spațiu de stocare: </span><span class="val-stocare"><%-prod.memorie_gb%></span> GB</p>
+                                <p class="memorie-ram"><span class="titlu-produs">RAM: </span><span class="val-memorie-ram"><%-prod.memorie_ram%> GB</p>
+                                <% if (prod.specificatii && prod.specificatii.length > 0) { %>
+                                    <p class="specificatii"><span class="titlu-produs">Specificații: </span><%- prod.specificatii.join(', ') %></p>
+                                <% } %>
+                                <% 
+                                    const weekdaysRO = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                                    const monthsRO = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
+
+                                    let dbDate = new Date(prod.data_adaugare);
+
+                                    let dayOfWeek = weekdaysRO[dbDate.getDay()];
+                                    let dayOfmonth = dbDate.getDate();
+                                    let month = monthsRO[dbDate.getMonth()];
+                                    let year = dbDate.getFullYear();
+
+                                    let dateFormat = dayOfWeek + ", " + dayOfmonth + " " + month + " " + year;
+                                %>
+                                <p><span class="titlu-produs">Dată adăugare: </span><time class="val-data"><%- dateFormat %></time></p>
+                                <p><span class="titlu-produs">Are accesorii: </span>
+                                    <% if(prod.are_accesorii) { %>
+                                        <span class="val-accesorii">DA</span>
+                                    <% } else { %>
+                                        <span class="val-accesorii">NU</span>
+                                    <% } %>
+                                </p>
+                            </div>
                         </div>
-                        <figure>
-                            <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" alt="[imagine <%- prod.nume %>]" /></a>
-                        </figure>
-                        <!--<label class="selecteaza-cos">
+                        <label class="selecteaza-cos">
                             Selectează:<br/>
                             <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                        </label>-->
+                        </label>
                     </article>
                 <% }%>
             </div>

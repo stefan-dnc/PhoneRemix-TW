@@ -4,10 +4,10 @@ const ejs = require("ejs");
 const sass = require("sass");
 const erori = require("./erori.json");
 const galerie = require("./resurse/json/galerie.json");
-const fs = require("fs"); 
+const fs = require("fs");
 const sharp = require("sharp");
 app = express();
-console.log("Folder proiect", __dirname); 
+console.log("Folder proiect", __dirname);
 console.log("Cale fisier", __filename);
 console.log("Director de lucru", process.cwd());
 // Diferenta dintre __dirname si process.cwd() este ca __dirname
@@ -25,9 +25,12 @@ var client = new Client({
 });
 client.connect();
 
-client.query("select * from unnest(enum_range(NULL::categorie))", function (err, rez) {
-  console.log(rez);
-});
+client.query(
+  "select * from unnest(enum_range(NULL::categorie))",
+  function (err, rez) {
+    console.log(rez);
+  }
+);
 
 const vect_foldere = ["temp", "backup"];
 vect_foldere.forEach((folder) => {
@@ -64,7 +67,10 @@ app.get("/produse", function (req, res) {
             console.log(err);
             afisareEroare(res, 2);
           } else {
-            res.render("pagini/produse", { produse: rez.rows, optiuni: rezOptiuni.rows });
+            res.render("pagini/produse", {
+              produse: rez.rows,
+              optiuni: rezOptiuni.rows,
+            });
           }
         }
       );
@@ -74,14 +80,22 @@ app.get("/produse", function (req, res) {
 
 app.get("/produs/:id", function (req, res) {
   client.query(
-    `select * from produse where id=${req.params.id}`,
-    function (err, rez) {
-      if (err) {
-        console.log(err);
-        afisareEroare(res, 2);
-      } else {
-        res.render("pagini/produs", { prod: rez.rows[0] });
-      }
+    "select * from unnest(enum_range(null::categorie_brand))",
+    function (err, rezOptiuni) {
+      client.query(
+        `select * from produse where id=${req.params.id}`,
+        function (err, rez) {
+          if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+          } else {
+            res.render("pagini/produs", {
+              prod: rez.rows[0],
+              optiuni: rezOptiuni.rows,
+            });
+          }
+        }
+      );
     }
   );
 });
@@ -100,7 +114,10 @@ function initErori() {
         eroare.imagine = path.join(erori.cale_baza, eroare.imagine);
       });
 
-      erori.eroare_default.imagine = path.join(erori.cale_baza, erori.eroare_default.imagine);
+      erori.eroare_default.imagine = path.join(
+        erori.cale_baza,
+        erori.eroare_default.imagine
+      );
 
       obGlobal.obErori = erori;
 
@@ -124,7 +141,13 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
   const imagineAfisata = imagine || eroare.imagine;
   console.log("AAAAAAAAAAAAAAAA", imagine, eroare.imagine);
 
-  console.log("Eroare:", identificator, titluAfisat, textAfisat, obErori.cale_baza);
+  console.log(
+    "Eroare:",
+    identificator,
+    titluAfisat,
+    textAfisat,
+    obErori.cale_baza
+  );
   res.render("pagini/eroare", {
     titlu: titluAfisat,
     text: textAfisat,
@@ -206,21 +229,34 @@ app.use((req, res, next) => {
   next();
 });
 app.get(["/", "/home", "/index"], function (req, res) {
-  res.render("pagini/index");
+  client.query(
+    "select * from unnest(enum_range(null::categorie_brand))",
+    function (err, rezOptiuni) {
+      res.render("pagini/index", {
+        optiuni: rezOptiuni.rows,
+      });
+    }
+  );
 });
 
 app.get("/despre", function (req, res) {
-    generateSmallerImages(galerie.imagini, galerie.cale_galerie);
-    const userIp = req.ip;
-    const galerie_filtrata = renderImagesBySeason(res);
-    const galerie_path = galerie.cale_galerie;
-    console.log("IMAGINI", galerie);
-    console.log("CALE", galerie_path, "\n\n\n\n");
-    res.render("pagini/despre", {
-      userIp: userIp,
-      galerie: galerie_filtrata,
-      galerie_path: galerie_path,
-    });
+  client.query(
+    "select * from unnest(enum_range(null::categorie_brand))",
+    function (err, rezOptiuni) {
+      generateSmallerImages(galerie.imagini, galerie.cale_galerie);
+      const userIp = req.ip;
+      const galerie_filtrata = renderImagesBySeason(res);
+      const galerie_path = galerie.cale_galerie;
+      console.log("IMAGINI", galerie);
+      console.log("CALE", galerie_path, "\n\n\n\n");
+      res.render("pagini/despre", {
+        userIp: userIp,
+        galerie: galerie_filtrata,
+        galerie_path: galerie_path,
+        optiuni: rezOptiuni.rows,
+      });
+    }
+  );
 });
 
 app.use("/resurse", function (req, res, next) {
@@ -251,7 +287,6 @@ app.use((req, res, next) => {
   }
 });
 
-
 app.get("/*", function (req, res) {
   console.log(req.url);
   res.render("pagini" + req.url, function (err, rezHtml) {
@@ -264,7 +299,13 @@ app.get("/*", function (req, res) {
             (eroare) => eroare.identificator === errorCode
           ) || obErori.eroare_default;
 
-        afisareEroare(res, errorCode, eroareData.titlu, eroareData.text, eroareData.imagine);
+        afisareEroare(
+          res,
+          errorCode,
+          eroareData.titlu,
+          eroareData.text,
+          eroareData.imagine
+        );
       } else {
         throw err;
       }
