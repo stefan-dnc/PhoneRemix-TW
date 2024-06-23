@@ -11,7 +11,8 @@ header {
   padding-bottom: 0;
   cursor: default;
   position: sticky;
-  top: -4rem;
+  top: -2rem;
+  left: 0;
 
   #menu-toggle {
     display: none !important;
@@ -206,7 +207,7 @@ nav {
     padding: 0.5rem;
     position: absolute;
     top: 0;
-    left: 0;
+    top: 0;
     width: 100%;
     min-height: 3rem;
 
@@ -218,6 +219,7 @@ nav {
       padding: 1rem;
       position: absolute;
       left: 0;
+      top: 0;
     }
 
     nav {
@@ -227,7 +229,7 @@ nav {
       align-items: center;
       position: absolute;
       border-radius: 0;
-      top: 4rem;
+      top: 3rem;
       width: 100%;
       background-color: var(--spring-green-dark);
       left: 0;

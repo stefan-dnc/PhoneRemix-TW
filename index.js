@@ -232,7 +232,15 @@ app.get(["/", "/home", "/index"], function (req, res) {
   client.query(
     "select * from unnest(enum_range(null::categorie_brand))",
     function (err, rezOptiuni) {
+      generateSmallerImages(galerie.imagini, galerie.cale_galerie);
+      const galerie_carousel = galerie.imagini;
+      const galerie_path = galerie.cale_galerie;
+      console.log("IMAGINI_CAROUSEL", galerie_carousel);
+      console.log("IMAGINI_NORMAL", galerie);
+      console.log("CALE", galerie_path, "\n\n\n\n");
       res.render("pagini/index", {
+        galerie_path: galerie_path,
+        galerie_carousel: galerie_carousel,
         optiuni: rezOptiuni.rows,
       });
     }

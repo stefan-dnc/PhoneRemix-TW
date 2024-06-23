@@ -1,0 +1,62 @@
+<section>
+    <div id="productCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <% for (let i = 0; i < galerie_carousel.length && i < 5; i++) { %>
+                <li data-target="#productCarousel" data-slide-to="<%= i %>" <%= i === 0 ? 'class="active"' : '' %>></li>
+            <% } %>
+        </ol>
+        <div class="carousel-inner" id="carouselInner">
+            <% galerie_carousel.slice(0, 5).forEach((imagine, index) => { %>
+                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                    <img src="<%= galerie_path + '/' + imagine.cale_fisier %>"
+                         class="" alt="<%= imagine.alt || imagine.titlu %>" style="height: 64rem; object-fit: cover;">
+                </div>
+            <% }); %>
+        </div>
+        <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    const galerie_carousel = JSON.parse('<%- JSON.stringify(galerie_carousel) %>');
+    const galerie_path = '<%= galerie_path %>';
+
+    function getRandomItems(array, numItems) {
+        const shuffled = array.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, numItems);
+    }
+
+    function updateCarousel() {
+        const carouselInner = document.getElementById('carouselInner');
+        const randomItems = getRandomItems(galerie_carousel, 5);
+        console.log(randomItems);
+        console.log(galerie_carousel);
+        carouselInner.innerHTML = '';
+
+        randomItems.forEach((imagine, index) => {
+            const isActive = index === 0 ? 'active' : '';
+            const carouselItem = `
+                <div class="carousel-item ${isActive}">
+                    <img src="${galerie_path}/${imagine.cale_fisier}"
+                         class="d-block w-100" alt="${imagine.alt || imagine.titlu}" style="height: 20rem; object-fit: cover;">
+                </div>`;
+            carouselInner.innerHTML += carouselItem;
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateCarousel();
+        
+        setInterval(updateCarousel, 15000);
+    });
+</script>

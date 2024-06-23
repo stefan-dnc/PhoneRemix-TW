@@ -10,7 +10,7 @@ body main a:visited {
 
 body main a[href^="http"]::before {
     content: "\2BB3";
-    font-size: 150%;
+    font-size: 100%;
     transition: color 0.3s;
 }
 

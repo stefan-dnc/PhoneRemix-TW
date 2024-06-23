@@ -158,6 +158,10 @@ a {
     padding: 0.5em;
 }
 
+#tab-orar thead th:nth-child(2n+1) {
+    background-color: var(--spring-green);
+}
+
 #video-yt {
     display: flex;
     flex-direction: row;
@@ -181,8 +185,8 @@ a {
 
 .tab-iframe {
     background-color: var(--spring-green-light);
-    height: 2em;
-    width: 6em;
+    height: 4em;
+    width: 10em;
     padding: 1em;
     margin-bottom: 1em;
     margin-right: 0;
