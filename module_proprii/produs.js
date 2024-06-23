@@ -1,4 +1,11 @@
+/**
+ * Reprezinta un produs
+ * @class
+ */
 class Produs{
+    /**
+ * Creeaza un produs cu parametrii specificati
+ */
 
     constructor({id, nume, descriere, pret, gramaj, tip_produs, calorii, categorie, ingrediente, pt_diabetici, imagine, data_adaugare}={}) {
 

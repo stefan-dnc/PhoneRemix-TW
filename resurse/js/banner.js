@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setCookie(name, value, timpExp) {
     const date = new Date();
-    //date.setDate(date.getTime() + timpExp * 24 * 60 * 60 * 1000);
-    date.setTime(date.getTime() + timpExp * 1000);
+    date.setDate(date.getTime() + timpExp * 24 * 60 * 60 * 1000);
+    //date.setTime(date.getTime() + timpExp * 1000);
     document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
   }
 

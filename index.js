@@ -6,6 +6,13 @@ const erori = require("./erori.json");
 const galerie = require("./resurse/json/galerie.json");
 const fs = require("fs");
 const sharp = require("sharp");
+
+const AccesBD = require("./module_proprii/accesbd.js");
+const formidable = require("formidable");
+const { Utilizator } = require("./module_proprii/utilizator.js");
+const session = require("express-session");
+const Drepturi = require("./module_proprii/drepturi.js");
+
 app = express();
 console.log("Folder proiect", __dirname);
 console.log("Cale fisier", __filename);
@@ -15,6 +22,15 @@ console.log("Director de lucru", process.cwd());
 // iar process.cwd() este calea absoluta a folderului din care am folosit comanda node
 
 const Client = require("pg").Client;
+
+app.use(
+  session({
+    // aici se creeaza proprietatea session a requestului (pot folosi req.session)
+    secret: "abcdefg", //folosit de express session pentru criptarea id-ului de sesiune
+    resave: true,
+    saveUninitialized: false,
+  })
+);
 
 var client = new Client({
   database: "cti_2024",
@@ -32,7 +48,7 @@ client.query(
   }
 );
 
-const vect_foldere = ["temp", "backup"];
+const vect_foldere = ["temp", "backup", "poze_uploadate"];
 vect_foldere.forEach((folder) => {
   const folderPath = path.join(__dirname, folder);
 
@@ -69,7 +85,7 @@ app.get("/produse", function (req, res) {
           } else {
             res.render("pagini/produse", {
               produse: rez.rows,
-              optiuni: rezOptiuni.rows,
+              optiuni: res.optiuni,
             });
           }
         }
@@ -221,13 +237,26 @@ async function generateSmallerImages(galerie, galeriePath) {
 app.set("view engine", "ejs");
 
 app.use("/resurse", express.static(path.join(__dirname + "/resurse")));
+app.use("/node_modules", express.static(path.join(__dirname + "/node_modules")));
+app.use("/poze_uploadate", express.static(path.join(__dirname + "/poze_uploadate")));
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
     "frame-src 'self' https://www.youtube.com https://www.google.com ;"
   );
-  next();
+
+  client.query(
+    "select * from unnest(enum_range(null::categorie_brand))",
+    function (err, rezOptiuni) {
+      if (err) {
+        return next(err);
+      }
+      res.locals.optiuni = rezOptiuni.rows;
+      next();
+    }
+  );
 });
+
 app.get(["/", "/home", "/index"], function (req, res) {
   client.query(
     "select * from unnest(enum_range(null::categorie_brand))",
@@ -320,7 +349,94 @@ app.get("/*", function (req, res) {
     }
     //console.log(rezHtml);
     //console.log("Eroare: ", err);
-    res.send(rezHtml);
+    res.send(rezHtml + "");
+  });
+});
+
+app.post("/inregistrare", function (req, res) {
+  var username;
+  var poza;
+  var formular = new formidable.IncomingForm();
+  formular.parse(req, function (err, campuriText, campuriFisier) {
+    //4
+    console.log("Inregistrare:", campuriText);
+
+    console.log(campuriFisier);
+    console.log(poza, username);
+    var eroare = "";
+
+    var utilizNou = new Utilizator();
+    try {
+      utilizNou.setareNume = campuriText.nume[0];
+      utilizNou.setareUsername = campuriText.username[0];
+      utilizNou.email = campuriText.email[0];
+      utilizNou.prenume = campuriText.prenume[0];
+
+      utilizNou.parola = campuriText.parola[0];
+      utilizNou.culoare_chat = campuriText.culoare_chat[0];
+      utilizNou.poza = poza[0];
+      Utilizator.getUtilizDupaUsername(
+        campuriText.username[0],
+        {},
+        function (u, parametru, eroareUser) {
+          if (eroareUser == -1) {
+            //nu exista username-ul in BD
+            //TO DO salveaza utilizator
+            utilizNou.salvareUtilizator();
+          } else {
+            eroare += "Mai exista username-ul";
+          }
+
+          if (!eroare) {
+            client.query(
+              "select * from unnest(enum_range(null::categorie_brand))",
+              function (err, rezOptiuni) {
+                res.render("pagini/inregistrare", {
+                  raspuns: "Inregistrare cu succes!",
+                  optiuni: rezOptiuni.rows,
+                });
+            });
+          } else
+            res.render("pagini/inregistrare", { err: "Eroare: " + eroare });
+        }
+      );
+    } catch (e) {
+      console.log(e);
+      eroare += "Eroare site; reveniti mai tarziu";
+      console.log(eroare);
+      res.render("pagini/inregistrare", { err: "Eroare: " + eroare });
+    }
+  });
+  formular.on("field", function (nume, val) {
+    // 1
+
+    console.log(`--- ${nume}=${val}`);
+
+    if (nume == "username") username = val;
+  });
+  formular.on("fileBegin", function (nume, fisier) {
+    //2
+    console.log("fileBegin");
+
+    console.log(nume, fisier);
+    //TO DO adaugam folderul poze_uploadate ca static si sa fie creat de aplicatie
+    //TO DO in folderul poze_uploadate facem folder cu numele utilizatorului (variabila folderUser)
+    var folderUser = path.join(__dirname, "poze_uploadate", username);
+
+    if (!fs.existsSync(folderUser)) {
+      fs.mkdirSync(folderUser);
+    }
+
+    fisier.filepath = path.join(folderUser, fisier.originalFilename);
+    poza = fisier.originalFilename;
+    //fisier.filepath=folderUser+"/"+fisier.originalFilename
+    console.log("fileBegin:", poza);
+    console.log("fileBegin, fisier:", fisier);
+  });
+  formular.on("file", function (nume, fisier) {
+    //3
+    console.log("file");
+    console.log(nume, fisier);
   });
 });
 
