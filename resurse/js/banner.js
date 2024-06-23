@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setCookie(name, value, timpExp) {
     const date = new Date();
-    date.setDate(date.getTime() + timpExp * 24 * 60 * 60 * 1000);
-    //date.setTime(date.getTime() + timpExp * 1000);
+    //date.setDate(date.getTime() + timpExp * 24 * 60 * 60 * 1000);
+    date.setTime(date.getTime() + timpExp * 1000);
     document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
   }
 
@@ -34,14 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!bannerAccepted) {
     banner.style.animation = "bannerAnimation 5s forwards";
   }
+  else {
+    setCookie("lastVisited", new Date().toISOString(), 7);
+  }
 
   acceptButton.addEventListener("click", () => {
     setCookie(cookieName, "true", 7);
+    setCookie("lastVisited", new Date().toISOString(), 7);
     banner.style.animation = "none";
     banner.style.opacity = "0";
   });
-
-  setCookie("lastVisited", new Date().toISOString(), 7);
 
   console.log("Cookie:", getCookie("bannerAccepted"));
 
