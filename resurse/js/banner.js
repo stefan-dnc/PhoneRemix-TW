@@ -32,9 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const bannerAccepted = getCookie(cookieName);
   if (!bannerAccepted) {
-    banner.style.animation = "bannerAnimation 5s forwards";
+    if (window.innerWidth > 1200)
+      banner.style.animation = "bannerAnimation 5s forwards";
+    else
+      banner.style.opacity = "0.75";
   }
   else {
+    banner.style.opacity = "0";
     setCookie("lastVisited", new Date().toISOString(), 7);
   }
 
