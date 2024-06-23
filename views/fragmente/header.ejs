@@ -20,7 +20,6 @@
                             <li><a href="pagina5">Pagina 5</a></li>
                             <li><a href="pagina6">Pagina 6</a></li>
                             <li><a href="pagina7">Pagina 7</a></li>
-                            <li><a href="pagina8">Pagina 8</a></li>
                             <li><a href="despre">Despre</a></li>
                         </ul>
                     </li>
@@ -46,6 +45,13 @@
 
                         </ul>
                     </li>
+                    <li><a href="inregistrare">Inregistrare</a></li>
+                    <%-
+                        include("../fragmente/submeniu-administrare.ejs")
+                    %>
+                    <%-
+                        include("../fragmente/submeniu-utilizator-logat.ejs")
+                    %>
                 </ul>
             </nav>
         </header>
